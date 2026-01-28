@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_hr_dashboard_form" model="ir.ui.view">
+        <field name="name">HR Dashboard</field>
+        <field name="model">hr.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="HR Dashboard" create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h1 class="text-center" style="color: #e91e63; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                <i class="fa fa-id-card mr-2"/>Tổng Quan Nhân Sự
+                            </h1>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Total Employees -->
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #ec407a 0%, #d81b60 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Nhân Viên</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="total_employees" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-users fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Departments -->
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Phòng Ban</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="total_departments" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-building fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Active Contracts -->
+                         <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Hợp Đồng</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="contracts_count" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-file-text fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Leaves -->
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #ef5350 0%, #c62828 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Chờ Duyệt Nghỉ</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="leaves_pending" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <div class="position-relative d-inline-block">
+                                                <i class="fa fa-plane fa-3x" style="opacity:0.3"></i>
+                                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border border-light rounded-circle" style="width:15px; height:15px;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-header bg-white font-weight-bold text-uppercase border-bottom-0">
+                                    <i class="fa fa-bolt mr-2 text-warning"></i>Truy cập nhanh
+                                </div>
+                                <div class="card-body">
+                                    <button name="%(quan_ly_nhan_su.action_nhan_vien)d" type="action" class="btn btn-outline-primary btn-block mb-3 text-left">
+                                        <i class="fa fa-user-plus mr-2"/> Quản lý Nhân viên
+                                    </button>
+                                    <button name="%(quan_ly_nhan_su.action_nghi_phep)d" type="action" class="btn btn-outline-danger btn-block mb-3 text-left">
+                                        <i class="fa fa-calendar-times-o mr-2"/> Duyệt nghỉ phép
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-header bg-white font-weight-bold text-uppercase border-bottom-0">
+                                    <i class="fa fa-flag mr-2 text-success"></i>Thông báo hệ thống
+                                </div>
+                                <div class="card-body">
+                                    <div class="alert alert-light border">
+                                        <small class="text-muted">Hôm nay</small><br/>
+                                        <strong>Chào mừng đến với hệ thống HRM!</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard Nhân Sự</field>
+        <field name="res_model">hr.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="res_id" ref="quan_ly_nhan_su.hr_dashboard_record"/>
+        <field name="context">{'create': False, 'delete': False, 'edit': False}</field>
+    </record>
+
+    <!-- Menu Item (Make sure it's first) -->
+    <!-- Note: Need to check menu.xml to place this properly, typically sequence=0 -->
+</odoo>

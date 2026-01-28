@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Co Hoi Form to add AI button and tab -->
+    <record id="view_co_hoi_form_ai_inherit" model="ir.ui.view">
+        <field name="name">co.hoi.ban.hang.form.ai.inherit</field>
+        <field name="model">co_hoi_ban_hang</field>
+        <field name="inherit_id" ref="quan_ly_khach_hang.view_co_hoi_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI button in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_ai_analyze" type="object" 
+                        string="🤖 Phân tích AI" class="btn-info"/>
+            </xpath>
+            
+            <!-- Add AI Analysis tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="🤖 AI Analysis" name="ai_analysis">
+                    <group>
+                        <field name="ai_analysis_date" readonly="1"/>
+                    </group>
+                    <group string="Kết quả phân tích">
+                        <field name="ai_analysis" nolabel="1" readonly="1" 
+                               placeholder="Nhấn nút 'Phân tích AI' để nhận đề xuất từ AI"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

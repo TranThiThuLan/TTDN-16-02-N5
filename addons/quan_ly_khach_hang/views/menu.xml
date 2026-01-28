@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menu Root -->
+        <menuitem
+            id="menu_root"
+            name="Quản Lý Khách Hàng"
+            web_icon="quan_ly_khach_hang,static/description/icon.png"
+            sequence="20"/>
+
+        <!-- Dashboard -->
+        <menuitem 
+            id="menu_dashboard"
+            name="Tổng Quan"
+            parent="menu_root"
+            sequence="0"
+            action="action_crm_dashboard"/>
+        
+        <!-- Menu Khách Hàng -->
+        <menuitem 
+            id="menu_khach_hang_parent"
+            name="Khách Hàng"
+            parent="menu_root"
+            sequence="1"/>
+        
+        <menuitem name="Danh Sách Khách Hàng"
+            id="menu_khach_hang"
+            parent="menu_khach_hang_parent"
+            sequence="1"
+            action="action_khach_hang"/>
+        
+        <menuitem name="Người Liên Hệ"
+            id="menu_lien_he"
+            parent="menu_khach_hang_parent"
+            sequence="2"
+            action="action_lien_he"/>
+
+        <!-- Menu Bán Hàng -->
+        <menuitem 
+            id="menu_ban_hang_parent"
+            name="Bán Hàng"
+            parent="menu_root"
+            sequence="2"/>
+        
+        <menuitem name="Cơ Hội Bán Hàng"
+            id="menu_co_hoi"
+            parent="menu_ban_hang_parent"
+            sequence="1"
+            action="action_co_hoi"/>
+        
+        <menuitem name="Báo Giá"
+            id="menu_bao_gia"
+            parent="menu_ban_hang_parent"
+            sequence="2"
+            action="action_bao_gia"/>
+
+        <!-- Menu Hoạt Động -->
+        <menuitem 
+            id="menu_hoat_dong_parent"
+            name="Hoạt Động"
+            parent="menu_root"
+            sequence="3"/>
+        
+        <menuitem name="Lịch Hẹn"
+            id="menu_lich_hen"
+            parent="menu_hoat_dong_parent"
+            sequence="1"
+            action="action_lich_hen"/>
+        
+        <menuitem name="Lịch Sử Tương Tác"
+            id="menu_tuong_tac"
+            parent="menu_hoat_dong_parent"
+            sequence="2"
+            action="action_tuong_tac"/>
+    </data>
+</odoo>

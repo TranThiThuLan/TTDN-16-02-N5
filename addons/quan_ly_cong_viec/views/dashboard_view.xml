@@ -1,0 +1,164 @@
+<odoo>
+    <record id="view_dashboard_form" model="ir.ui.view">
+        <field name="name">Quy trình công việc và dự án</field>
+        <field name="model">dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard Công Việc" create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h1 class="text-center" style="color: #009688; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                <i class="fa fa-tachometer mr-2"/>Tổng Quan Dự Án
+                            </h1>
+                        </div>
+                    </div>
+                    
+                    <!-- KPI Cards Row 1 -->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card text-white bg-info h-100 shadow rounded" style="background: linear-gradient(45deg, #0288d1, #26c6da) !important; border:none;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="card-title text-uppercase mb-0" style="font-size: 0.9rem; opacity: 0.8;">Nhân Sự</h5>
+                                            <h2 class="font-weight-bold mb-0 mt-2">
+                                                <field name="so_luong_nhan_vien" readonly="1" options="{'format': 0}"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-users fa-3x" style="opacity: 0.3;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card text-white bg-warning h-100 shadow rounded" style="background: linear-gradient(45deg, #ff6f00, #ffca28) !important; border:none;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="card-title text-uppercase mb-0" style="font-size: 0.9rem; opacity: 0.8;">Dự Án</h5>
+                                            <h2 class="font-weight-bold mb-0 mt-2">
+                                                <field name="so_luong_du_an" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-folder-open fa-3x" style="opacity: 0.3;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card text-white bg-success h-100 shadow rounded" style="background: linear-gradient(45deg, #43a047, #66bb6a) !important; border:none;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="card-title text-uppercase mb-0" style="font-size: 0.9rem; opacity: 0.8;">Công Việc</h5>
+                                            <h2 class="font-weight-bold mb-0 mt-2">
+                                                <field name="so_luong_cong_viec" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-tasks fa-3x" style="opacity: 0.3;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card text-white bg-danger h-100 shadow rounded" style="background: linear-gradient(45deg, #c62828, #ef5350) !important; border:none;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h5 class="card-title text-uppercase mb-0" style="font-size: 0.9rem; opacity: 0.8;">Đánh Giá</h5>
+                                            <h2 class="font-weight-bold mb-0 mt-2">
+                                                <field name="so_luong_danh_gia" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-star fa-3x" style="opacity: 0.3;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="o_horizontal_separator mb-4">TIẾN ĐỘ DỰ ÁN</div>
+
+                    <!-- Project Status Cards -->
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="d-flex align-items-center p-3 shadow-sm rounded" style="background: #fff; border-left: 5px solid #4caf50;">
+                                <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mr-3" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-0">Hoàn Thành</h6>
+                                    <h3 class="font-weight-bold mb-0"><field name="du_an_hoan_thanh" readonly="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <div class="d-flex align-items-center p-3 shadow-sm rounded" style="background: #fff; border-left: 5px solid #2196f3;">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mr-3" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-0">Đang Thực Hiện</h6>
+                                    <h3 class="font-weight-bold mb-0"><field name="du_an_dang_thuc_hien" readonly="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <div class="d-flex align-items-center p-3 shadow-sm rounded" style="background: #fff; border-left: 5px solid #9e9e9e;">
+                            <div class="rounded-circle text-white d-flex align-items-center justify-content-center mr-3" style="width: 50px; height: 50px; background-color: #9e9e9e;">
+                                    <i class="fa fa-hourglass-o"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-0">Chưa Bắt Đầu</h6>
+                                    <h3 class="font-weight-bold mb-0"><field name="du_an_chua_bat_dau" readonly="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <div class="d-flex align-items-center p-3 shadow-sm rounded" style="background: #fff; border-left: 5px solid #f44336;">
+                                <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center mr-3" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-ban"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-0">Tạm Dừng</h6>
+                                    <h3 class="font-weight-bold mb-0"><field name="du_an_tam_dung" readonly="1"/></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Content Area -->
+                    <div class="row mt-4">
+                         <div class="col-12 alert alert-info text-center shadow-sm" role="alert" style="border-radius: 10px;">
+                            <i class="fa fa-info-circle mr-2"/>
+                            Dữ liệu được cập nhật theo thời gian thực.
+                        </div>
+                    </div>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dashboard" model="ir.actions.act_window">
+        <field name="name">Tổng Quan</field>
+        <field name="res_model">dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="res_id" ref="quan_ly_cong_viec.work_dashboard_record"/>
+    </record>
+</odoo>

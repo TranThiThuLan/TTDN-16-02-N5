@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_ai_config_form" model="ir.ui.view">
+        <field name="name">ai.config.form</field>
+        <field name="model">ai.config</field>
+        <field name="arch" type="xml">
+            <form string="Cấu hình AI">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tên cấu hình"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="🔑 API Settings">
+                            <field name="api_key" password="True"/>
+                            <field name="api_url"/>
+                            <field name="model_name"/>
+                        </group>
+                        <group string="⚙️ Parameters">
+                            <field name="max_tokens"/>
+                            <field name="temperature"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <strong>📝 Hướng dẫn:</strong>
+                        <ol>
+                            <li>Đăng ký tài khoản tại <a href="https://openrouter.ai" target="_blank">OpenRouter.ai</a></li>
+                            <li>Tạo API Key trong phần Settings</li>
+                            <li>Dán API Key vào trường phía trên</li>
+                            <li>Model mặc định: <code>xiaomi/mimo-v2-flash:free</code> (miễn phí)</li>
+                        </ol>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_ai_config_tree" model="ir.ui.view">
+        <field name="name">ai.config.tree</field>
+        <field name="model">ai.config</field>
+        <field name="arch" type="xml">
+            <tree string="Cấu hình AI">
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ai_config" model="ir.actions.act_window">
+        <field name="name">Cấu hình AI</field>
+        <field name="res_model">ai.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm cấu hình AI mới
+            </p>
+            <p>
+                Cấu hình API Key để sử dụng AI Assistant
+            </p>
+        </field>
+    </record>
+</odoo>

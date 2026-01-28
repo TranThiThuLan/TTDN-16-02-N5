@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Khách hàng -->
+        <record id="khach_hang_demo_1" model="khach_hang">
+            <field name="ten_khach_hang">Công Ty ABC</field>
+            <field name="loai_khach_hang">doanh_nghiep</field>
+            <field name="email">contact@abc.com</field>
+            <field name="dien_thoai">0287123456</field>
+            <field name="nhom_khach_hang">than_thiet</field>
+            <field name="nhan_vien_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_sale_1"/>
+        </record>
+
+        <record id="khach_hang_demo_2" model="khach_hang">
+            <field name="ten_khach_hang">Công Ty XYZ</field>
+            <field name="loai_khach_hang">doanh_nghiep</field>
+            <field name="email">info@xyz.vn</field>
+            <field name="dien_thoai">0287234567</field>
+            <field name="nhom_khach_hang">vip</field>
+            <field name="nhan_vien_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_sale_2"/>
+        </record>
+
+        <record id="khach_hang_demo_3" model="khach_hang">
+            <field name="ten_khach_hang">Nguyễn Văn A</field>
+            <field name="loai_khach_hang">ca_nhan</field>
+            <field name="email">nguyenvana@email.com</field>
+            <field name="dien_thoai">0901234567</field>
+            <field name="nhom_khach_hang">moi</field>
+            <field name="nhan_vien_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_sale_1"/>
+        </record>
+
+        <!-- Cơ hội bán hàng -->
+        <record id="co_hoi_demo_1" model="co_hoi_ban_hang">
+            <field name="ten_co_hoi">Xây Dựng Website</field>
+            <field name="khach_hang_id" ref="khach_hang_demo_1"/>
+            <field name="nhan_vien_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_sale_1"/>
+            <field name="gia_tri_du_kien">150000000</field>
+            <field name="xac_suat">75</field>
+            <field name="giai_doan">dam_phan</field>
+        </record>
+
+        <record id="co_hoi_demo_2" model="co_hoi_ban_hang">
+            <field name="ten_co_hoi">Triển Khai CRM</field>
+            <field name="khach_hang_id" ref="khach_hang_demo_2"/>
+            <field name="nhan_vien_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_sale_2"/>
+            <field name="gia_tri_du_kien">300000000</field>
+            <field name="xac_suat">90</field>
+            <field name="giai_doan">bao_gia</field>
+        </record>
+
+        <!-- Người liên hệ -->
+        <record id="lien_he_1" model="lien_he_khach_hang">
+            <field name="khach_hang_id" ref="khach_hang_demo_1"/>
+            <field name="ho_ten">Trần Minh Tuấn</field>
+            <field name="chuc_danh">Giám Đốc Kinh Doanh</field>
+            <field name="email">tuan.tran@abc.com</field>
+            <field name="dien_thoai">0287123456</field>
+            <field name="dien_thoai_di_dong">0901111111</field>
+            <field name="la_lien_he_chinh">True</field>
+        </record>
+
+        <record id="lien_he_2" model="lien_he_khach_hang">
+            <field name="khach_hang_id" ref="khach_hang_demo_2"/>
+            <field name="ho_ten">Lê Thị Hương</field>
+            <field name="chuc_danh">CEO</field>
+            <field name="email">huong.le@xyz.vn</field>
+            <field name="dien_thoai">0287234567</field>
+            <field name="dien_thoai_di_dong">0902222222</field>
+            <field name="la_lien_he_chinh">True</field>
+        </record>
+    </data>
+</odoo>

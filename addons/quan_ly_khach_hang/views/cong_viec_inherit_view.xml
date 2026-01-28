@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View để thêm khách hàng vào công việc -->
+    <record id="view_cong_viec_form_inherit_khach_hang" model="ir.ui.view">
+        <field name="name">cong_viec.form.inherit.khach_hang</field>
+        <field name="model">cong_viec</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_cong_viec_form"/>
+        <field name="arch" type="xml">
+            <!-- Thêm group Khách Hàng sau group thời gian -->
+            <xpath expr="//group[field[@name='phan_tram_cong_viec']]" position="after">
+                <group string="Liên Kết Khách Hàng" attrs="{'invisible': [('loai_cong_viec', '!=', 'ban_hang')]}">
+                    <group>
+                        <field name="khach_hang_id"/>
+                        <field name="co_hoi_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Inherit Tree View để thêm khách hàng -->
+    <record id="view_cong_viec_tree_inherit_khach_hang" model="ir.ui.view">
+        <field name="name">cong_viec.tree.inherit.khach_hang</field>
+        <field name="model">cong_viec</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_cong_viec_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='han_chot']" position="after">
+                <field name="khach_hang_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Inherit Search View -->
+    <record id="view_cong_viec_search_inherit_khach_hang" model="ir.ui.view">
+        <field name="name">cong_viec.search.inherit.khach_hang</field>
+        <field name="model">cong_viec</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_cong_viec_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='nhan_vien_ids']" position="after">
+                <field name="khach_hang_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='group_uu_tien']" position="after">
+                <filter string="Khách Hàng" name="group_kh" context="{'group_by': 'khach_hang_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

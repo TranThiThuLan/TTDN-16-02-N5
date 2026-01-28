@@ -1,0 +1,115 @@
+/* Modern UI for Odoo Modules - Work Management */
+
+/* KANBAN CARDS - Glassmorphism & Modern Look */
+.o_kanban_view .o_kanban_record {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    margin-bottom: 12px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    overflow: hidden !important;
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    z-index: 2;
+    border-color: rgba(113, 75, 103, 0.3) !important;
+}
+
+/* Headers */
+.o_kanban_header {
+    background-color: transparent !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #4c4c4c;
+    margin-bottom: 8px;
+}
+
+/* FORM VIEW - Prestige Style */
+.o_form_view {
+    background-color: #f3f4f6 !important; /* Soft Gray generic background */
+}
+
+.o_form_view .o_form_sheet_bg {
+    background: transparent !important;
+    padding: 20px !important;
+}
+
+.o_form_view .o_form_sheet {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    padding: 40px !important;
+    max-width: 1250px !important;
+    margin: 10px auto !important;
+}
+
+/* Form Headers */
+.o_form_view .oe_title h1 {
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.o_horizontal_separator {
+    color: #009688 !important; /* Teal for Work Management */
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+    margin-top: 2rem !important;
+}
+
+/* Buttons - Gradient Teal */
+.btn-primary {
+    background: linear-gradient(135deg, #009688 0%, #00796b 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0, 150, 136, 0.3) !important;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #26a69a 0%, #00897b 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 150, 136, 0.4) !important;
+}
+
+/* Status Bar */
+.o_statusbar_status {
+    background: #fff;
+    border-radius: 30px;
+    padding: 2px;
+}
+
+.o_statusbar_status .o_arrow_button.btn-primary.disabled {
+    background: linear-gradient(135deg, #009688 0%, #00796b 100%) !important;
+    color: white !important;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Dashboard Specifics */
+.o_dashboard_main {
+    padding: 20px;
+    background-color: #f3f4f6;
+}
+
+.card-dashboard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.card-dashboard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}

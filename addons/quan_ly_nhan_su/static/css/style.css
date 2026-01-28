@@ -1,0 +1,119 @@
+/* Modern UI for Odoo Modules - HR Management */
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* KANBAN CARDS - Employee Style */
+.o_kanban_view .o_kanban_record {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    border: none !important;
+    margin-bottom: 16px !important;
+    margin-top: 4px;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+    position: relative;
+}
+
+.o_kanban_view .o_kanban_record::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #e91e63;
+    /* Pink accent */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.o_kanban_view .o_kanban_record:hover::before {
+    opacity: 1;
+}
+
+/* FORM VIEW - HR Profile Style */
+.o_form_view {
+    background-color: #f8fafc !important;
+}
+
+.o_form_view .o_form_sheet {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid #f1f5f9 !important;
+    padding: 40px !important;
+    max-width: 1100px !important;
+    margin: 20px auto !important;
+}
+
+/* Avatar Styling */
+.o_field_image img {
+    border-radius: 20px !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 3px solid #fff;
+}
+
+/* Horizontal Separator */
+.o_horizontal_separator {
+    color: #e91e63 !important;
+    /* Pink 500 */
+    font-weight: 700 !important;
+    font-size: 1.15rem !important;
+    margin-top: 2.5rem !important;
+    border-bottom: 2px dashed #fbd5e3;
+    display: inline-block;
+    padding-right: 20px;
+}
+
+/* Buttons - Gradient Pink/Purple */
+.btn-primary {
+    background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3) !important;
+    border-radius: 8px !important;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ec407a 0%, #d81b60 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(233, 30, 99, 0.4) !important;
+}
+
+/* Notebook Tabs */
+.o_notebook .nav-tabs {
+    border-bottom: none !important;
+    margin-bottom: 15px;
+}
+
+.o_notebook .nav-tabs .nav-link {
+    border: none !important;
+    background: transparent !important;
+    color: #64748b;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.o_notebook .nav-tabs .nav-link.active {
+    background: #fdf2f8 !important;
+    /* Pink 50 */
+    color: #be185d !important;
+    /* Pink 700 */
+}
+
+.o_notebook .nav-tabs .nav-link:hover:not(.active) {
+    background: #f8fafc !important;
+    color: #334155;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Nhan Vien Form to add AI button and tab -->
+    <record id="view_nhan_vien_form_ai_inherit" model="ir.ui.view">
+        <field name="name">nhan.vien.form.ai.inherit</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="quan_ly_nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI button to button_box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_ai_evaluate" type="object" class="oe_stat_button" icon="fa-robot">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">AI Đánh giá</span>
+                    </div>
+                </button>
+            </xpath>
+            
+            <!-- Add AI Evaluation tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="🤖 AI Evaluation" name="ai_evaluation">
+                    <group>
+                        <field name="ai_evaluation_date" readonly="1"/>
+                    </group>
+                    <group string="Đánh giá và gợi ý phát triển">
+                        <field name="ai_evaluation" nolabel="1" readonly="1"
+                               placeholder="Nhấn nút 'AI Đánh giá' để nhận gợi ý phát triển nhân viên"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

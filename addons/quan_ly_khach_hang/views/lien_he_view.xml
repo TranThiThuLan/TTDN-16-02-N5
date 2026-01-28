@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_lien_he_form" model="ir.ui.view">
+        <field name="name">lien_he_khach_hang.form</field>
+        <field name="model">lien_he_khach_hang</field>
+        <field name="arch" type="xml">
+            <form string="Người Liên Hệ">
+                <sheet>
+                    <field name="anh_dai_dien" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/>
+                    <div class="oe_title">
+                        <label for="ho_ten"/>
+                        <h1>
+                            <field name="ho_ten" placeholder="Họ Tên"/>
+                        </h1>
+                        <field name="chuc_danh" placeholder="Chức danh"/>
+                    </div>
+                    <group>
+                        <group string="Thông Tin">
+                            <field name="khach_hang_id"/>
+                            <field name="phong_ban"/>
+                            <field name="gioi_tinh"/>
+                        </group>
+                        <group string="Liên Hệ">
+                            <field name="email"/>
+                            <field name="dien_thoai"/>
+                            <field name="dien_thoai_di_dong"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Mức Độ">
+                            <field name="la_lien_he_chinh"/>
+                            <field name="muc_do_anh_huong"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thông Tin Bổ Sung">
+                            <field name="thong_tin_bo_sung"/>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_lien_he_tree" model="ir.ui.view">
+        <field name="name">lien_he_khach_hang.tree</field>
+        <field name="model">lien_he_khach_hang</field>
+        <field name="arch" type="xml">
+            <tree string="Danh Sách Người Liên Hệ">
+                <field name="ho_ten"/>
+                <field name="khach_hang_id"/>
+                <field name="chuc_danh"/>
+                <field name="phong_ban"/>
+                <field name="email"/>
+                <field name="dien_thoai"/>
+                <field name="dien_thoai_di_dong"/>
+                <field name="la_lien_he_chinh" widget="boolean_toggle"/>
+                <field name="muc_do_anh_huong" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_lien_he_search" model="ir.ui.view">
+        <field name="name">lien_he_khach_hang.search</field>
+        <field name="model">lien_he_khach_hang</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Người Liên Hệ">
+                <field name="ho_ten"/>
+                <field name="khach_hang_id"/>
+                <field name="email"/>
+                <field name="dien_thoai"/>
+                <filter string="Liên Hệ Chính" name="filter_chinh" domain="[('la_lien_he_chinh', '=', True)]"/>
+                <filter string="Mức Ảnh Hưởng Cao" name="filter_cao" domain="[('muc_do_anh_huong', 'in', ['cao', 'quyet_dinh'])]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Khách Hàng" name="group_kh" context="{'group_by': 'khach_hang_id'}"/>
+                    <filter string="Mức Ảnh Hưởng" name="group_ah" context="{'group_by': 'muc_do_anh_huong'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_lien_he" model="ir.actions.act_window">
+        <field name="name">Người Liên Hệ</field>
+        <field name="res_model">lien_he_khach_hang</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_lien_he_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm người liên hệ đầu tiên
+            </p>
+        </field>
+    </record>
+</odoo>

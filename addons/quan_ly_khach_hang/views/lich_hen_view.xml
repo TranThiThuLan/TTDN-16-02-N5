@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_lich_hen_form" model="ir.ui.view">
+        <field name="name">lich_hen.form</field>
+        <field name="model">lich_hen</field>
+        <field name="arch" type="xml">
+            <form string="Lịch Hẹn">
+                <header>
+                    <button name="action_xac_nhan" string="Xác Nhận" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'du_kien')]}"/>
+                    <button name="action_hoan_thanh" string="Hoàn Thành" type="object" 
+                            class="btn-success" attrs="{'invisible': [('trang_thai', '!=', 'xac_nhan')]}"/>
+                    <button name="action_huy" string="Hủy" type="object" 
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', 'in', ['hoan_thanh', 'huy'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="du_kien,xac_nhan,hoan_thanh"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="tieu_de"/>
+                        <h1>
+                            <field name="tieu_de" placeholder="Tiêu đề cuộc hẹn"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Khách Hàng">
+                            <field name="khach_hang_id"/>
+                            <field name="lien_he_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                            <field name="co_hoi_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                        </group>
+                        <group string="Nhân Viên">
+                            <field name="nhan_vien_id"/>
+                            <field name="nguoi_tham_gia_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Thời Gian">
+                            <field name="ngay_hen"/>
+                            <field name="thoi_luong"/>
+                            <field name="ngay_ket_thuc"/>
+                        </group>
+                        <group string="Địa Điểm">
+                            <field name="loai_cuoc_hen" widget="radio"/>
+                            <field name="dia_diem" attrs="{'invisible': [('loai_cuoc_hen', '=', 'online')]}"/>
+                            <field name="link_meeting" attrs="{'invisible': [('loai_cuoc_hen', '=', 'truc_tiep')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="muc_dich"/>
+                        </group>
+                        <group>
+                            <field name="nhac_truoc"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô Tả">
+                            <field name="mo_ta" placeholder="Mô tả cuộc hẹn..."/>
+                        </page>
+                        <page string="Nội Dung Cuộc Họp" attrs="{'invisible': [('trang_thai', '!=', 'hoan_thanh')]}">
+                            <field name="noi_dung_cuoc_hop" placeholder="Nội dung đã trao đổi..."/>
+                            <field name="ket_luan" placeholder="Kết luận..."/>
+                            <field name="buoc_tiep_theo" placeholder="Bước tiếp theo..."/>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_lich_hen_tree" model="ir.ui.view">
+        <field name="name">lich_hen.tree</field>
+        <field name="model">lich_hen</field>
+        <field name="arch" type="xml">
+            <tree string="Danh Sách Lịch Hẹn" decoration-success="trang_thai == 'hoan_thanh'"
+                  decoration-danger="trang_thai == 'huy'"
+                  decoration-info="trang_thai == 'xac_nhan'">
+                <field name="tieu_de"/>
+                <field name="khach_hang_id"/>
+                <field name="ngay_hen"/>
+                <field name="thoi_luong"/>
+                <field name="loai_cuoc_hen" widget="badge"/>
+                <field name="muc_dich"/>
+                <field name="nhan_vien_id"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_lich_hen_calendar" model="ir.ui.view">
+        <field name="name">lich_hen.calendar</field>
+        <field name="model">lich_hen</field>
+        <field name="arch" type="xml">
+            <calendar string="Lịch Hẹn" date_start="ngay_hen" date_stop="ngay_ket_thuc" 
+                      color="nhan_vien_id" mode="month" event_open_popup="true">
+                <field name="tieu_de"/>
+                <field name="khach_hang_id"/>
+                <field name="loai_cuoc_hen"/>
+                <field name="trang_thai"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_lich_hen_search" model="ir.ui.view">
+        <field name="name">lich_hen.search</field>
+        <field name="model">lich_hen</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Lịch Hẹn">
+                <field name="tieu_de"/>
+                <field name="khach_hang_id"/>
+                <field name="nhan_vien_id"/>
+                <separator/>
+                <filter string="Dự Kiến" name="filter_du_kien" domain="[('trang_thai', '=', 'du_kien')]"/>
+                <filter string="Đã Xác Nhận" name="filter_xac_nhan" domain="[('trang_thai', '=', 'xac_nhan')]"/>
+                <filter string="Hoàn Thành" name="filter_hoan_thanh" domain="[('trang_thai', '=', 'hoan_thanh')]"/>
+                <separator/>
+                <filter string="Hôm Nay" name="filter_today" domain="[('ngay_hen', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)).strftime('%Y-%m-%d %H:%M:%S')), ('ngay_hen', '&lt;', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)) + datetime.timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <filter string="Tuần Này" name="filter_week" domain="[('ngay_hen', '&gt;=', (datetime.datetime.combine(context_today(), datetime.time(0,0,0)) - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Trạng Thái" name="group_tt" context="{'group_by': 'trang_thai'}"/>
+                    <filter string="Khách Hàng" name="group_kh" context="{'group_by': 'khach_hang_id'}"/>
+                    <filter string="NV Phụ Trách" name="group_nv" context="{'group_by': 'nhan_vien_id'}"/>
+                    <filter string="Ngày" name="group_ngay" context="{'group_by': 'ngay_hen:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_lich_hen" model="ir.actions.act_window">
+        <field name="name">Lịch Hẹn</field>
+        <field name="res_model">lich_hen</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="search_view_id" ref="view_lich_hen_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo lịch hẹn đầu tiên
+            </p>
+        </field>
+    </record>
+</odoo>

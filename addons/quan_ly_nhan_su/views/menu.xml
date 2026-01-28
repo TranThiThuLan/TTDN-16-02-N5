@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menu Root -->
+        <menuitem
+            id="menu_root"
+            name="Quản Lý Nhân Sự"
+            web_icon="quan_ly_nhan_su,static/description/icon.png"
+            sequence="10"/>
+
+        <!-- Dashboard -->
+        <menuitem 
+            id="menu_dashboard"
+            name="Tổng Quan"
+            parent="menu_root"
+            sequence="0"
+            action="action_hr_dashboard"/>
+        
+        <!-- Menu Nhân Viên -->
+        <menuitem 
+            id="menu_nhan_vien_parent"
+            name="Nhân Viên"
+            parent="menu_root"
+            sequence="1"/>
+        
+        <menuitem name="Danh Sách Nhân Viên"
+            id="menu_nhan_vien"
+            parent="menu_nhan_vien_parent"
+            sequence="1"
+            action="action_nhan_vien"/>
+        
+        <menuitem name="Phòng Ban"
+            id="menu_phong_ban"
+            parent="menu_nhan_vien_parent"
+            sequence="2"
+            action="action_phong_ban"/>
+        
+        <menuitem name="Chức Vụ" 
+            id="menu_chuc_vu" 
+            parent="menu_nhan_vien_parent" 
+            sequence="3"
+            action="action_chuc_vu"/>
+        
+        <menuitem name="Nhóm Dự Án"
+            id="menu_nhom_du_an"
+            parent="menu_nhan_vien_parent"
+            sequence="4"
+            action="action_nhom_du_an"/>
+
+        <!-- Menu Hợp Đồng -->
+        <menuitem 
+            id="menu_hop_dong_parent"
+            name="Hợp Đồng"
+            parent="menu_root"
+            sequence="2"/>
+        
+        <menuitem name="Hợp Đồng Lao Động"
+            id="menu_hop_dong"
+            parent="menu_hop_dong_parent"
+            sequence="1"
+            action="action_hop_dong"/>
+        
+        <menuitem name="Lịch Sử Làm Việc"
+            id="menu_lich_su_lam_viec"
+            parent="menu_hop_dong_parent"
+            sequence="2"
+            action="action_lich_su_lam_viec"/>
+
+        <!-- Menu Nghỉ Phép -->
+        <menuitem 
+            id="menu_nghi_phep_parent"
+            name="Nghỉ Phép"
+            parent="menu_root"
+            sequence="3"/>
+        
+        <menuitem name="Đơn Nghỉ Phép"
+            id="menu_nghi_phep"
+            parent="menu_nghi_phep_parent"
+            sequence="1"
+            action="action_nghi_phep"/>
+        
+        <menuitem name="Phép Năm"
+            id="menu_phep_nam"
+            parent="menu_nghi_phep_parent"
+            sequence="2"
+            action="action_phep_nam"/>
+
+        <!-- Menu Cấu Hình -->
+        <menuitem 
+            id="menu_cau_hinh"
+            name="Cấu Hình"
+            parent="menu_root"
+            sequence="100"/>
+    </data>
+</odoo>

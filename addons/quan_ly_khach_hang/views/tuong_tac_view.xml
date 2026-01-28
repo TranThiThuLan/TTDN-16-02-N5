@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_tuong_tac_form" model="ir.ui.view">
+        <field name="name">tuong_tac_khach_hang.form</field>
+        <field name="model">tuong_tac_khach_hang</field>
+        <field name="arch" type="xml">
+            <form string="Tương Tác Khách Hàng">
+                <sheet>
+                    <group>
+                        <group string="Khách Hàng">
+                            <field name="khach_hang_id"/>
+                            <field name="lien_he_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                            <field name="co_hoi_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                        </group>
+                        <group string="Tương Tác">
+                            <field name="loai_tuong_tac"/>
+                            <field name="ngay_tuong_tac"/>
+                            <field name="thoi_luong"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Nhân Viên &amp; Kết Quả">
+                            <field name="nhan_vien_id"/>
+                            <field name="ket_qua"/>
+                        </group>
+                        <group string="Tạo Công Việc">
+                            <field name="tao_cong_viec"/>
+                            <field name="cong_viec_id" readonly="1"/>
+                            <button name="action_tao_cong_viec" string="Tạo Công Việc" type="object"
+                                    class="btn-secondary" attrs="{'invisible': ['|', ('cong_viec_id', '!=', False), ('tao_cong_viec', '=', True)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô Tả">
+                            <field name="mo_ta" placeholder="Mô tả tương tác..."/>
+                        </page>
+                        <page string="Nội Dung Trao Đổi">
+                            <field name="noi_dung_trao_doi" placeholder="Nội dung đã trao đổi..."/>
+                        </page>
+                        <page string="Bước Tiếp Theo">
+                            <field name="buoc_tiep_theo" placeholder="Hành động tiếp theo cần thực hiện..."/>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_tuong_tac_tree" model="ir.ui.view">
+        <field name="name">tuong_tac_khach_hang.tree</field>
+        <field name="model">tuong_tac_khach_hang</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch Sử Tương Tác" decoration-success="ket_qua == 'thanh_cong'"
+                  decoration-warning="ket_qua == 'can_theo_doi'"
+                  decoration-danger="ket_qua in ['khong_lien_lac_duoc', 'tu_choi']">
+                <field name="ngay_tuong_tac"/>
+                <field name="khach_hang_id"/>
+                <field name="loai_tuong_tac" widget="badge"/>
+                <field name="nhan_vien_id"/>
+                <field name="thoi_luong"/>
+                <field name="ket_qua" widget="badge"/>
+                <field name="mo_ta"/>
+                <field name="cong_viec_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_tuong_tac_search" model="ir.ui.view">
+        <field name="name">tuong_tac_khach_hang.search</field>
+        <field name="model">tuong_tac_khach_hang</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Tương Tác">
+                <field name="khach_hang_id"/>
+                <field name="nhan_vien_id"/>
+                <field name="loai_tuong_tac"/>
+                <separator/>
+                <filter string="Gọi Điện" name="filter_goi" domain="[('loai_tuong_tac', '=', 'goi_dien')]"/>
+                <filter string="Email" name="filter_email" domain="[('loai_tuong_tac', '=', 'email')]"/>
+                <filter string="Gặp Mặt" name="filter_gap" domain="[('loai_tuong_tac', '=', 'gap_mat')]"/>
+                <separator/>
+                <filter string="Thành Công" name="filter_thanh_cong" domain="[('ket_qua', '=', 'thanh_cong')]"/>
+                <filter string="Cần Theo Dõi" name="filter_theo_doi" domain="[('ket_qua', '=', 'can_theo_doi')]"/>
+                <filter string="Có Công Việc" name="filter_cv" domain="[('cong_viec_id', '!=', False)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Loại" name="group_loai" context="{'group_by': 'loai_tuong_tac'}"/>
+                    <filter string="Kết Quả" name="group_kq" context="{'group_by': 'ket_qua'}"/>
+                    <filter string="Khách Hàng" name="group_kh" context="{'group_by': 'khach_hang_id'}"/>
+                    <filter string="Nhân Viên" name="group_nv" context="{'group_by': 'nhan_vien_id'}"/>
+                    <filter string="Ngày" name="group_ngay" context="{'group_by': 'ngay_tuong_tac:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_tuong_tac" model="ir.actions.act_window">
+        <field name="name">Lịch Sử Tương Tác</field>
+        <field name="res_model">tuong_tac_khach_hang</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_tuong_tac_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ghi nhận tương tác với khách hàng
+            </p>
+            <p>
+                Mỗi tương tác có thể tự động tạo công việc để theo dõi.
+            </p>
+        </field>
+    </record>
+</odoo>

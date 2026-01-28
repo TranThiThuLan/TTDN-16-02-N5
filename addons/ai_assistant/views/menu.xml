@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_ai_assistant_root" 
+              name="🤖 AI Assistant" 
+              sequence="100"
+              web_icon="ai_assistant,static/description/icon.png"/>
+    
+    <!-- Submenu: Chat -->
+    <menuitem id="menu_ai_chat" 
+              name="💬 Chat với AI"
+              parent="menu_ai_assistant_root"
+              action="action_ai_chat"
+              sequence="10"/>
+    
+    <!-- Submenu: Config -->
+    <menuitem id="menu_ai_config"
+              name="⚙️ Cấu hình"
+              parent="menu_ai_assistant_root"
+              action="action_ai_config"
+              sequence="90"
+              groups="base.group_system"/>
+</odoo>

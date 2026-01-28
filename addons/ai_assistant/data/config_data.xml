@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Cấu hình mặc định -->
+        <record id="ai_config_default" model="ai.config">
+            <field name="name">OpenRouter - Xiaomi MiMo</field>
+            <field name="api_key">YOUR_API_KEY_HERE</field>
+            <field name="model_name">xiaomi/mimo-v2-flash:free</field>
+            <field name="api_url">https://openrouter.ai/api/v1/chat/completions</field>
+            <field name="max_tokens">2000</field>
+            <field name="temperature">0.7</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

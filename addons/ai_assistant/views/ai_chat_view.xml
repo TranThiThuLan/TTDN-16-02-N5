@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_ai_chat_form" model="ir.ui.view">
+        <field name="name">ai.chat.form</field>
+        <field name="model">ai.chat</field>
+        <field name="arch" type="xml">
+            <form string="Chat với AI">
+                <header>
+                    <button name="action_new_chat" type="object" string="💬 Cuộc hội thoại mới" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>🤖 AI Assistant</h1>
+                    </div>
+                    
+                    <!-- Chat messages -->
+                    <group string="📜 Lịch sử hội thoại">
+                        <field name="message_ids" nolabel="1">
+                            <tree create="0" delete="0" decoration-info="role=='user'" decoration-success="role=='assistant'">
+                                <field name="create_date" string="Thời gian"/>
+                                <field name="role" string="Từ"/>
+                                <field name="content" string="Nội dung"/>
+                            </tree>
+                        </field>
+                    </group>
+                    
+                    <!-- Quick input -->
+                    <group string="✏️ Nhập câu hỏi">
+                        <field name="quick_message" nolabel="1" placeholder="Nhập câu hỏi của bạn tại đây..."/>
+                    </group>
+                    
+                    <div class="text-center">
+                        <button name="action_send_message" type="object" string="📤 Gửi" class="btn-primary oe_highlight"/>
+                    </div>
+                    
+                    <div class="alert alert-secondary mt-3">
+                        <strong>💡 Gợi ý câu hỏi:</strong>
+                        <ul>
+                            <li>Làm thế nào để tăng hiệu suất bán hàng?</li>
+                            <li>Cách quản lý dự án hiệu quả là gì?</li>
+                            <li>Đề xuất KPI cho nhân viên kinh doanh?</li>
+                            <li>Quy trình chăm sóc khách hàng VIP?</li>
+                        </ul>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_ai_chat_tree" model="ir.ui.view">
+        <field name="name">ai.chat.tree</field>
+        <field name="model">ai.chat</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch sử chat">
+                <field name="tieu_de"/>
+                <field name="user_id"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ai_chat" model="ir.actions.act_window">
+        <field name="name">Chat với AI</field>
+        <field name="res_model">ai.chat</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Bắt đầu cuộc hội thoại mới với AI
+            </p>
+            <p>
+                AI Assistant sẽ giúp bạn trả lời các câu hỏi về quản lý kinh doanh
+            </p>
+        </field>
+    </record>
+</odoo>

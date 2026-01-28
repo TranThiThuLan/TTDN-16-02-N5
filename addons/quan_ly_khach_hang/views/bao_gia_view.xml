@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_bao_gia_form" model="ir.ui.view">
+        <field name="name">bao_gia.form</field>
+        <field name="model">bao_gia</field>
+        <field name="arch" type="xml">
+            <form string="Báo Giá">
+                <header>
+                    <button name="action_gui" string="Gửi Báo Giá" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_chap_nhan" string="Khách Chấp Nhận" type="object" 
+                            class="btn-success" attrs="{'invisible': [('trang_thai', 'not in', ['gui', 'dam_phan'])]}"/>
+                    <button name="action_tu_choi" string="Từ Chối" type="object" 
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', 'not in', ['gui', 'dam_phan'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,gui,dam_phan,chap_nhan"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="ten_bao_gia"/>
+                        <h1>
+                            <field name="ten_bao_gia" placeholder="Tiêu đề báo giá"/>
+                        </h1>
+                        <field name="ma_bao_gia" readonly="1"/>
+                    </div>
+                    <group>
+                        <group string="Khách Hàng">
+                            <field name="khach_hang_id"/>
+                            <field name="lien_he_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                            <field name="co_hoi_id" domain="[('khach_hang_id', '=', khach_hang_id)]"/>
+                        </group>
+                        <group string="Thông Tin">
+                            <field name="nhan_vien_id"/>
+                            <field name="ngay_bao_gia"/>
+                            <field name="ngay_hieu_luc"/>
+                            <field name="don_vi_tien"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Chi Tiết Sản Phẩm/Dịch Vụ">
+                            <field name="chi_tiet_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="ten_san_pham"/>
+                                    <field name="mo_ta"/>
+                                    <field name="don_vi"/>
+                                    <field name="so_luong"/>
+                                    <field name="don_gia" widget="monetary"/>
+                                    <field name="chiet_khau"/>
+                                    <field name="thanh_tien" widget="monetary" sum="Tổng"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="tong_tien" widget="monetary"/>
+                                <field name="chiet_khau_phan_tram"/>
+                                <field name="chiet_khau_tien" widget="monetary"/>
+                                <field name="thue_phan_tram"/>
+                                <field name="thue_tien" widget="monetary"/>
+                                <div class="oe_subtotal_footer_separator"/>
+                                <field name="tong_thanh_toan" widget="monetary" class="oe_subtotal_footer_separator"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page string="Điều Khoản">
+                            <group>
+                                <field name="dieu_khoan_thanh_toan" placeholder="Điều khoản thanh toán..."/>
+                            </group>
+                            <group>
+                                <field name="dieu_khoan_giao_hang" placeholder="Điều khoản giao hàng..."/>
+                            </group>
+                            <group>
+                                <field name="bao_hanh" placeholder="Chính sách bảo hành..."/>
+                            </group>
+                        </page>
+                        <page string="File Đính Kèm">
+                            <group>
+                                <field name="file_bao_gia" filename="file_bao_gia_name"/>
+                                <field name="file_bao_gia_name" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Ghi Chú">
+                            <field name="ghi_chu" placeholder="Ghi chú thêm..."/>
+                            <field name="ly_do_tu_choi" placeholder="Lý do từ chối..." 
+                                   attrs="{'invisible': [('trang_thai', '!=', 'tu_choi')]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_bao_gia_tree" model="ir.ui.view">
+        <field name="name">bao_gia.tree</field>
+        <field name="model">bao_gia</field>
+        <field name="arch" type="xml">
+            <tree string="Danh Sách Báo Giá" decoration-success="trang_thai == 'chap_nhan'"
+                  decoration-danger="trang_thai in ['tu_choi', 'het_han']"
+                  decoration-warning="trang_thai == 'dam_phan'">
+                <field name="ma_bao_gia"/>
+                <field name="ten_bao_gia"/>
+                <field name="khach_hang_id"/>
+                <field name="co_hoi_id"/>
+                <field name="ngay_bao_gia"/>
+                <field name="ngay_hieu_luc"/>
+                <field name="tong_thanh_toan" widget="monetary" sum="Tổng"/>
+                <field name="trang_thai" widget="badge"/>
+                <field name="nhan_vien_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_bao_gia_search" model="ir.ui.view">
+        <field name="name">bao_gia.search</field>
+        <field name="model">bao_gia</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Báo Giá">
+                <field name="ma_bao_gia"/>
+                <field name="ten_bao_gia"/>
+                <field name="khach_hang_id"/>
+                <separator/>
+                <filter string="Nháp" name="filter_nhap" domain="[('trang_thai', '=', 'nhap')]"/>
+                <filter string="Đã Gửi" name="filter_gui" domain="[('trang_thai', '=', 'gui')]"/>
+                <filter string="Chấp Nhận" name="filter_chap_nhan" domain="[('trang_thai', '=', 'chap_nhan')]"/>
+                <filter string="Từ Chối" name="filter_tu_choi" domain="[('trang_thai', '=', 'tu_choi')]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Trạng Thái" name="group_tt" context="{'group_by': 'trang_thai'}"/>
+                    <filter string="Khách Hàng" name="group_kh" context="{'group_by': 'khach_hang_id'}"/>
+                    <filter string="NV Bán Hàng" name="group_nv" context="{'group_by': 'nhan_vien_id'}"/>
+                    <filter string="Tháng" name="group_thang" context="{'group_by': 'ngay_bao_gia:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_bao_gia" model="ir.actions.act_window">
+        <field name="name">Báo Giá</field>
+        <field name="res_model">bao_gia</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_bao_gia_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo báo giá đầu tiên
+            </p>
+        </field>
+    </record>
+</odoo>

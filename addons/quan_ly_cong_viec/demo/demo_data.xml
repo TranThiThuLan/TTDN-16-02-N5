@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Dự án -->
+        <record id="du_an_web" model="du_an">
+            <field name="ten_du_an">Phát Triển Website Bán Hàng</field>
+            <field name="mo_ta">Xây dựng website thương mại điện tử</field>
+            <field name="nguoi_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_IT_1"/>
+            <field name="tien_do_du_an">dang_thuc_hien</field>
+            <field name="phan_tram_du_an">35</field>
+        </record>
+
+        <record id="du_an_crm" model="du_an">
+            <field name="ten_du_an">Triển Khai Hệ Thống CRM</field>
+            <field name="mo_ta">Cài đặt và tùy chỉnh hệ thống CRM</field>
+            <field name="nguoi_phu_trach_id" ref="quan_ly_nhan_su.nhan_vien_IT_1"/>
+            <field name="tien_do_du_an">chua_bat_dau</field>
+        </record>
+
+        <!-- Giai đoạn -->
+        <record id="giai_doan_1" model="giai_doan_cong_viec">
+            <field name="ten_giai_doan">Phân Tích</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="thu_tu">10</field>
+        </record>
+
+        <record id="giai_doan_2" model="giai_doan_cong_viec">
+            <field name="ten_giai_doan">Thiết Kế</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="thu_tu">20</field>
+        </record>
+
+        <record id="giai_doan_3" model="giai_doan_cong_viec">
+            <field name="ten_giai_doan">Phát Triển</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="thu_tu">30</field>
+        </record>
+
+        <!-- Công việc -->
+        <record id="cong_viec_1" model="cong_viec">
+            <field name="ten_cong_viec">Phân tích yêu cầu khách hàng</field>
+            <field name="mo_ta">Thu thập và phân tích yêu cầu chi tiết</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="giai_doan_id" ref="giai_doan_1"/>
+            <field name="nhan_vien_ids" eval="[(6, 0, [ref('quan_ly_nhan_su.nhan_vien_IT_1')])]"/>
+            <field name="loai_cong_viec">phat_trien</field>
+            <field name="muc_do_uu_tien">3</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="ngay_bat_dau">2026-01-01</field>
+            <field name="han_chot">2026-01-15</field>
+            <field name="thoi_gian_uoc_tinh">40</field>
+        </record>
+
+        <record id="cong_viec_2" model="cong_viec">
+            <field name="ten_cong_viec">Thiết kế giao diện người dùng</field>
+            <field name="mo_ta">Thiết kế UI/UX cho trang chủ và sản phẩm</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="giai_doan_id" ref="giai_doan_2"/>
+            <field name="nhan_vien_ids" eval="[(6, 0, [ref('quan_ly_nhan_su.nhan_vien_IT_1')])]"/>
+            <field name="loai_cong_viec">thiet_ke</field>
+            <field name="muc_do_uu_tien">3</field>
+            <field name="trang_thai">dang_thuc_hien</field>
+            <field name="ngay_bat_dau">2026-01-16</field>
+            <field name="han_chot">2026-02-15</field>
+            <field name="thoi_gian_uoc_tinh">80</field>
+        </record>
+
+        <record id="cong_viec_3" model="cong_viec">
+            <field name="ten_cong_viec">Phát triển module thanh toán</field>
+            <field name="mo_ta">Tích hợp cổng thanh toán VNPAY</field>
+            <field name="du_an_id" ref="du_an_web"/>
+            <field name="giai_doan_id" ref="giai_doan_3"/>
+            <field name="nhan_vien_ids" eval="[(6, 0, [ref('quan_ly_nhan_su.nhan_vien_IT_1')])]"/>
+            <field name="loai_cong_viec">phat_trien</field>
+            <field name="muc_do_uu_tien">4</field>
+            <field name="trang_thai">moi</field>
+            <field name="ngay_bat_dau">2026-02-16</field>
+            <field name="han_chot">2026-03-31</field>
+            <field name="thoi_gian_uoc_tinh">120</field>
+        </record>
+    </data>
+</odoo>

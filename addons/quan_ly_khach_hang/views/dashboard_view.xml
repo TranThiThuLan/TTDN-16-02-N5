@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_crm_dashboard_form" model="ir.ui.view">
+        <field name="name">CRM Dashboard</field>
+        <field name="model">crm.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="CRM Dashboard" create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h1 class="text-center" style="color: #2563eb; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                <i class="fa fa-line-chart mr-2"/>Tổng Quan Kinh Doanh
+                            </h1>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Khách Hàng</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="total_customers" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-address-book fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Cơ Hội</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="total_opportunities" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-star fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Thành Công</h6>
+                                            <h2 class="mb-0 font-weight-bold">
+                                                <field name="won_opportunities" readonly="1"/>
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-check-circle fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-4">
+                            <div class="card text-white h-100 shadow rounded" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); border:none;">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h6 class="text-uppercase mb-2 opacity-75">Doanh Thu Dự Kiến</h6>
+                                            <h3 class="mb-0 font-weight-bold" style="font-size: 1.5rem;">
+                                                <field name="expected_revenue" readonly="1" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                                            </h3>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="fa fa-money fa-3x" style="opacity:0.3"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                         <div class="col-md-8 mx-auto">
+                            <div class="card border-primary mb-3 text-center shadow-sm">
+                                <div class="card-body text-primary">
+                                    <h5 class="card-title">Báo Giá Đang Xử Lý</h5>
+                                    <p class="card-text display-4 font-weight-bold">
+                                        <field name="pending_quotes" readonly="1"/>
+                                    </p>
+                                    <button name="%(quan_ly_khach_hang.action_bao_gia)d" type="action" class="btn btn-primary btn-sm">Xem chi tiết</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_crm_dashboard" model="ir.actions.act_window">
+        <field name="name">Tổng Quan Kinh Doanh</field>
+        <field name="res_model">crm.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="res_id" ref="quan_ly_khach_hang.crm_dashboard_record"/>
+    </record>
+</odoo>

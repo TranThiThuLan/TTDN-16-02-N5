@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_lich_su_lam_viec_form" model="ir.ui.view">
+        <field name="name">lich_su_lam_viec.form</field>
+        <field name="model">lich_su_lam_viec</field>
+        <field name="arch" type="xml">
+            <form string="Lịch Sử Làm Việc">
+                <sheet>
+                    <group>
+                        <group string="Thông Tin Nhân Viên">
+                            <field name="nhan_vien_id"/>
+                            <field name="loai_lich_su"/>
+                        </group>
+                        <group string="Vị Trí">
+                            <field name="ten_lich_su" placeholder="Tên công việc/vị trí"/>
+                            <field name="chuc_vu"/>
+                            <field name="phong_ban"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Công Ty/Tổ Chức">
+                            <field name="ten_cong_ty"/>
+                            <field name="dia_chi_cong_ty"/>
+                        </group>
+                        <group string="Thời Gian">
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc" attrs="{'invisible': [('dang_lam', '=', True)]}"/>
+                            <field name="dang_lam"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lương">
+                            <field name="muc_luong" widget="monetary"/>
+                        </group>
+                        <group string="Người Tham Chiếu">
+                            <field name="nguoi_tham_chieu"/>
+                            <field name="sdt_tham_chieu"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô Tả Công Việc">
+                            <field name="mo_ta_cong_viec" placeholder="Mô tả công việc đã làm..."/>
+                        </page>
+                        <page string="Thành Tựu">
+                            <field name="thanh_tuu" placeholder="Các thành tựu đạt được..."/>
+                        </page>
+                        <page string="Lý Do Nghỉ" attrs="{'invisible': [('dang_lam', '=', True)]}">
+                            <field name="ly_do_nghi" placeholder="Lý do nghỉ việc..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_lich_su_lam_viec_tree" model="ir.ui.view">
+        <field name="name">lich_su_lam_viec.tree</field>
+        <field name="model">lich_su_lam_viec</field>
+        <field name="arch" type="xml">
+            <tree string="Danh Sách Lịch Sử Làm Việc" decoration-success="dang_lam == True">
+                <field name="nhan_vien_id"/>
+                <field name="ten_lich_su"/>
+                <field name="ten_cong_ty"/>
+                <field name="chuc_vu"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="dang_lam" widget="boolean_toggle"/>
+                <field name="loai_lich_su" widget="badge"
+                       decoration-info="loai_lich_su == 'trong_cong_ty'"
+                       decoration-warning="loai_lich_su == 'ngoai_cong_ty'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_lich_su_lam_viec_search" model="ir.ui.view">
+        <field name="name">lich_su_lam_viec.search</field>
+        <field name="model">lich_su_lam_viec</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Kiếm Lịch Sử Làm Việc">
+                <field name="nhan_vien_id"/>
+                <field name="ten_lich_su"/>
+                <field name="ten_cong_ty"/>
+                <filter string="Trong Công Ty" name="filter_trong" domain="[('loai_lich_su', '=', 'trong_cong_ty')]"/>
+                <filter string="Trước Khi Vào" name="filter_ngoai" domain="[('loai_lich_su', '=', 'ngoai_cong_ty')]"/>
+                <filter string="Đang Làm" name="filter_dang_lam" domain="[('dang_lam', '=', True)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Nhân Viên" name="group_nhan_vien" context="{'group_by': 'nhan_vien_id'}"/>
+                    <filter string="Loại" name="group_loai" context="{'group_by': 'loai_lich_su'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_lich_su_lam_viec" model="ir.actions.act_window">
+        <field name="name">Lịch Sử Làm Việc</field>
+        <field name="res_model">lich_su_lam_viec</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_lich_su_lam_viec_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm lịch sử làm việc
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_khach_hang,khach_hang.khach_hang,model_khach_hang,base.group_user,1,1,1,1
+access_lien_he_khach_hang,lien_he_khach_hang.lien_he_khach_hang,model_lien_he_khach_hang,base.group_user,1,1,1,1
+access_co_hoi_ban_hang,co_hoi_ban_hang.co_hoi_ban_hang,model_co_hoi_ban_hang,base.group_user,1,1,1,1
+access_bao_gia,bao_gia.bao_gia,model_bao_gia,base.group_user,1,1,1,1
+access_bao_gia_chi_tiet,bao_gia_chi_tiet.bao_gia_chi_tiet,model_bao_gia_chi_tiet,base.group_user,1,1,1,1
+access_lich_hen,lich_hen.lich_hen,model_lich_hen,base.group_user,1,1,1,1
+access_tuong_tac_khach_hang,tuong_tac_khach_hang.tuong_tac_khach_hang,model_tuong_tac_khach_hang,base.group_user,1,1,1,1
+access_crm_dashboard,crm.dashboard,model_crm_dashboard,base.group_user,1,1,1,1

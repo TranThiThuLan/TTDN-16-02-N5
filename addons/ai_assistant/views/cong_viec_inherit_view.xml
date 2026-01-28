@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Cong Viec Form to add AI button and tab -->
+    <record id="view_cong_viec_form_ai_inherit" model="ir.ui.view">
+        <field name="name">cong.viec.form.ai.inherit</field>
+        <field name="model">cong_viec</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_cong_viec_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI button in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_ai_estimate" type="object" 
+                        string="🤖 Gợi ý AI" class="btn-info"/>
+            </xpath>
+            
+            <!-- Add AI Suggestion tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="🤖 AI Suggestion" name="ai_suggestion">
+                    <group>
+                        <field name="ai_suggestion_date" readonly="1"/>
+                    </group>
+                    <group string="Gợi ý từ AI">
+                        <field name="ai_suggestion" nolabel="1" readonly="1"
+                               placeholder="Nhấn nút 'Gợi ý AI' để nhận đề xuất về thời gian và cách thực hiện"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,81 @@
+/* Modern UI for Odoo Modules - CRM / Customer Management */
+
+/* KANBAN CARDS - Sales Pipeline Style */
+.o_kanban_view .o_kanban_record {
+    background: #ffffff !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    border-left: 5px solid #3b82f6 !important;
+    /* Blue accent */
+    margin-bottom: 10px !important;
+    padding: 12px !important;
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15) !important;
+    transform: scale(1.02);
+}
+
+/* Kanban Headers */
+.o_kanban_group {
+    background-color: #f1f5f9;
+    border-radius: 12px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.o_kanban_header {
+    background: transparent !important;
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* FORM VIEW - Business & Professional */
+.o_form_view .o_form_sheet {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    max-width: 1200px !important;
+}
+
+/* Headers */
+.o_horizontal_separator {
+    color: #2563eb !important;
+    /* Blue 600 */
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Buttons - Blue Gradient */
+.btn-primary {
+    background: linear-gradient(to right, #2563eb, #3b82f6) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #1d4ed8, #2563eb) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Status Pipeline */
+.o_arrow_button {
+    border-radius: 0 !important;
+    position: relative;
+    padding-left: 20px !important;
+    padding-right: 15px !important;
+}
+
+.o_arrow_button.btn-primary.disabled {
+    background: #2563eb !important;
+    color: white !important;
+}
+
+/* Chatter to bottom specifically for CRM if possible, or just cleaner chatter */
+.o_Chatter {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
