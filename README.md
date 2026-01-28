@@ -20,7 +20,24 @@
 </div>
 
 ## 📖 1. Giới thiệu
-Platform ERP được áp dụng vào học phần Thực tập doanh nghiệp dựa trên mã nguồn mở Odoo. 
+Platform ERP - Giải pháp Quản trị Doanh nghiệp tổng thể, được xây dựng và phát triển trong học phần Thực tập doanh nghiệp. Hệ thống được phát triển dựa trên nền tảng Odoo, tập trung sâu vào hai nghiệp vụ chính: **Quản lý Khách hàng (CRM)** và **Quản lý Công việc (Task Management)**, nhằm tối ưu hóa quy trình kinh doanh và nâng cao hiệu suất làm việc.
+
+### 🌟 Các Phân hệ Chính
+
+#### 🤝 Quản lý Khách hàng (CRM)
+Giải pháp toàn diện giúp doanh nghiệp quản lý mối quan hệ khách hàng và quy trình bán hàng:
+- **Quản lý 360 độ**: Lưu trữ chi tiết thông tin khách hàng (cá nhân/doanh nghiệp) và đầu mối liên hệ.
+- **Cơ hội kinh doanh**: Theo dõi, đánh giá và chuyển đổi tiềm năng thành đơn hàng.
+- **Hoạt động bán hàng**: Quản lý báo giá, lịch hẹn và lịch sử tương tác chi tiết.
+- **Tích hợp quy trình**: Tự động liên kết và khởi tạo công việc từ các hoạt động bán hàng, giúp bộ phận kinh doanh và kỹ thuật phối hợp nhịp nhàng.
+
+#### 📋 Quản lý Công việc & Dự án
+Công cụ đắc lực để tổ chức, theo dõi và đánh giá hiệu quả công việc:
+- **Tổ chức Dự án**: Quản lý đa dự án với cấu trúc giai đoạn rõ ràng.
+- **Điều phối Công việc**: Phân công task, thiết lập mức độ ưu tiên (KPIs) và theo dõi trạng thái thời gian thực.
+- **Nhật ký & Đánh giá**: Ghi nhận nhật ký công việc (Timesheet) và hệ thống đánh giá nhân viên khách quan.
+- **Dashboard trực quan**: Báo cáo tổng quan, biểu đồ thống kê giúp nhà quản lý nắm bắt tiến độ tức thì.
+- **Kết nối dữ liệu**: Liên kết chặt chẽ với dữ liệu khách hàng và nhân sự. 
 
 ## 🔧 2. Các công nghệ được sử dụng
 <div align="center">
